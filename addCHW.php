@@ -2,9 +2,9 @@
 
 $hote='localhost';
 $port='3306';
-$name_bd='mvacc';
-$user='moh_zambia';
-$pass='5cGBKO9mn8';
+$name_bd='name_bd';
+$user='user';
+$pass='pass';
 
 $connexion = new PDO('mysql:host='.$hote.';port='.$port.';dbname='.$name_bd, $user, $pass);    
     if (isset($_GET['uuid']) and isset($_GET['chw_name']) and isset($_GET['chw_phone']) and isset($_GET['province']) and isset($_GET['district']) and isset($_GET['health_facility']) and isset($_GET['zone'])) 

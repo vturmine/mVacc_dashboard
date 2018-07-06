@@ -5,6 +5,7 @@ namespace blog\Http\Controllers;
 use Illuminate\Http\Request;
 use blog\User;
 use Validator;
+use Mail;
 use Auth; 
 use Session;
 use blog\Percent; 
@@ -52,15 +53,25 @@ class AddUserController extends Controller
     {
     	$this->validator($request);
     	User::create([
-            'name' =>  $request['name'],
-            'email' => $request['email'],
-            'roles' => $request['roles'],
+            'name'     => $request['name'],
+            'email'    => $request['email'],
+            'roles'    => $request['roles'],
             'province' => $request['province'],
             'district' => $request['district'], 
             'facility' => $request['facility'],
-            'zone' => $request['zone'], 
+            'zone'     => $request['zone'], 
             'password' => bcrypt($request['password']),
         ]);
+        $name     = $request['name'];
+        $email    = $request['email'];
+        $password = $request['password'];
+        $data = array('name'=>$name, "email" => $email, "password" => $password);
+        Mail::send('users.mail', $data, function($message) {
+        $message->to('acermamadou@gmail.com', 'mVaccination')
+         ->subject('mVaccination');
+        $message->from('vmvaccination@gmail.com','mVaccination');
+    }   );
+
     	return redirect('/home');
     }
 

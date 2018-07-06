@@ -34,6 +34,17 @@ class OverviewController extends Controller
        $northern_fully = 0;
        $southern_fully = 0;
        $western_fully = 0; 
+
+       $central_all = 0;
+       $copperbelt_all = 0;
+       $eastern_all = 0;
+       $luapula_all = 0;
+       $lusaka_all = 0;
+       $muchinga_all = 0;
+       $north_western_all = 0;
+       $northern_all = 0;
+       $southern_all = 0;
+       $western_all = 0; 
        foreach ($percents as $child) {
          $age = $child->age;
          if($age >= 0 and $age < 24)
@@ -43,7 +54,49 @@ class OverviewController extends Controller
            
             if($age >= 12 and $age < 24)
             {
-            	$allpercent_12_23 = $allpercent_12_23 + 1;
+            	  $allpercent_12_23 = $allpercent_12_23 + 1;
+
+                if($child->province == 'Central')
+                {
+                   $central_all = $central_all + 1;  
+                } 
+                if($child->province == 'Copperbelt')
+                {
+                   $copperbelt_all = $copperbelt_all + 1;  
+                } 
+                if($child->province == 'Eastern')
+                {
+                   $eastern_all = $eastern_all + 1;  
+                } 
+                if($child->province == 'Luapula')
+                {
+                   $luapula_all = $luapula_all + 1; 
+                }
+                if($child->province == 'Lusaka')
+                {
+                   $lusaka_all = $lusaka_all + 1;  
+                }  
+                if($child->province == 'Muchinga')
+                {
+                   $muchinga_all = $muchinga_all + 1;  
+                }
+                if($child->province == 'North-Western')
+                {
+                   $north_western_all = $north_western_all + 1;  
+                }  
+                if($child->province == 'Northern')
+                {
+                   $northern_all = $northern_all + 1; 
+                }
+                if($child->province == 'Southern')
+                {
+                   $southern_all = $southern_all + 1; 
+                } 
+                if($child->province == 'Western')
+                {
+                   $western_all = $western_all + 1;  
+                }  
+
             	if($result == 1)
             	{
             	  if($child->province == 'Central')
@@ -90,28 +143,74 @@ class OverviewController extends Controller
             }
        }
      }
-       if($allpercent_12_23 != 0)
+       if($central_all != 0)
        {
-          $zmce = round(($central_fully*100)/$allpercent_12_23);
-          $zmco = round(($copperbelt_fully*100)/$allpercent_12_23);
-          $zmea = round(($eastern_fully*100)/$allpercent_12_23);
-          $zmlp = round(($luapula_fully*100)/$allpercent_12_23);
-          $zmls = round(($lusaka_fully*100)/$allpercent_12_23);
-          $zmmu = round(($muchinga_fully*100)/$allpercent_12_23);
-          $zmnw = round(($north_western_fully*100)/$allpercent_12_23);
-          $zmno = round(($northern_fully*100)/$allpercent_12_23);
-          $zmso = round(($southern_fully*100)/$allpercent_12_23);
-          $zmwe = round(($western_fully*100)/$allpercent_12_23);
+          $zmce = round(($central_fully*100)/$central_all); 
        }else{
-          $zmce = 0;
-          $zmco = 0;
-          $zmea = 0;
-          $zmlp = 0;
-          $zmls = 0;
-          $zmmu = 0;
-          $zmnw = 0;
-          $zmno = 0;
-          $zmso = 0;
+          $zmce = 0; 
+       }
+
+       if($copperbelt_all != 0)
+       { 
+          $zmco = round(($copperbelt_fully*100)/$copperbelt_all); 
+       }else{ 
+          $zmco = 0; 
+       }
+
+       if($eastern_all != 0)
+       {  
+          $zmea = round(($eastern_fully*100)/$eastern_all); 
+       }else{  
+          $zmea = 0; 
+       }
+
+        if($luapula_all != 0)
+       {   
+          $zmlp = round(($luapula_fully*100)/$luapula_all); 
+       }else{   
+          $zmlp = 0; 
+       }
+
+        if($lusaka_all != 0)
+       {  
+          $zmls = round(($lusaka_fully*100)/$lusaka_all); 
+       }else{  
+          $zmls = 0; 
+          $zmwe = 0;
+       } 
+
+        if($muchinga_all != 0)
+       {   
+          $zmmu = round(($muchinga_fully*100)/$muchinga_all); 
+       }else{   
+          $zmmu = 0; 
+       }
+
+      if($north_western_all != 0)
+       {  
+          $zmnw = round(($north_western_fully*100)/$north_western_all); 
+       }else{  
+          $zmnw = 0; 
+       }
+
+        if($northern_all != 0)
+       {   
+          $zmno = round(($northern_fully*100)/$northern_all); 
+       }else{   
+          $zmno = 0; 
+       }
+
+       if($southern_all != 0)
+       {   
+          $zmso = round(($southern_fully*100)/$southern_all); 
+       }else{   
+          $zmso = 0; 
+       }
+
+       if($western_all != 0)
+       {   
+          $zmwe = round(($western_fully*100)/$western_all);
+       }else{ 
           $zmwe = 0;
        }
         
